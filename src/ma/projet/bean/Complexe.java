@@ -3,7 +3,8 @@ package ma.projet.bean;
 import ma.projet.inter.IAffichage;
 import ma.projet.inter.IOperation;
 
-public class Complexe implements IOperation, IAffichage {
+
+public class Complexe implements IOperation<Complexe>, IAffichage {
 	private double im;
 	private double re;
 
@@ -13,27 +14,36 @@ public class Complexe implements IOperation, IAffichage {
 		this.re = re;
 	}
 
+	public double getIm() {
+		return im;
+	}
+
+	public void setIm(double im) {
+		this.im = im;
+	}
+
+	public double getRe() {
+		return re;
+	}
+
+	public void setRe(double re) {
+		this.re = re;
+	}
+
+	@Override
+	public Complexe plus(Complexe obj) {
+	    return new Complexe(this.re + obj.re, this.im + obj.im);
+	}
+
+	@Override
+	public Complexe moins(Complexe obj) {
+	    return new Complexe(this.re - obj.re, this.im - obj.im);
+	}
+
+
 	@Override
 	public String affiche() {
-		return re + (im >= 0 ? " + " : " - ") + Math.abs(im) + "i";
-	}
-
-	@Override
-	public Object plus(Object obj) {
-		if (obj instanceof Complexe) {
-			Complexe c = (Complexe) obj;
-			return new Complexe(this.re + c.re, this.im + c.im);
-		}
-		return null;
-	}
-
-	@Override
-	public Object moins(Object obj) {
-		if (obj instanceof Complexe) {
-			Complexe c = (Complexe) obj;
-			return new Complexe(this.re - c.re, this.im - c.im);
-		}
-		return null;
+	    return "Le nombre est : " + this.re + " + " + this.im + "i";
 	}
 
 }

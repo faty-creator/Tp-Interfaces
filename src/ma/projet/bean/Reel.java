@@ -3,7 +3,8 @@ package ma.projet.bean;
 import ma.projet.inter.IAffichage;
 import ma.projet.inter.IOperation;
 
-public class Reel implements IOperation, IAffichage {
+
+public class Reel implements IOperation<Reel>, IAffichage {
 	private double x;
 
 	public Reel(double x) {
@@ -11,31 +12,47 @@ public class Reel implements IOperation, IAffichage {
 		this.x = x;
 	}
 
+	public double getX() {
+		return x;
+	}
+
+	public void setX(double x) {
+		this.x = x;
+	}
+
+	@Override
+	public Reel plus(Reel obj) {
+
+		return new Reel(obj.x + this.x);
+	}
+
+	@Override
+	public Reel moins(Reel obj) {
+
+		return new Reel(obj.x - this.x);
+
+	}
+
 	@Override
 	public String affiche() {
-		return "" + x;
+
+		return "le nbr est :" + this.x;
 	}
 
-	@Override
-	public Object plus(Object obj) {
-		if (obj instanceof Reel) {
-            Reel r = (Reel) obj;
-            return new Reel(this.x + r.x);
-        }
-        return null;
+	public double plus(double... x) {
+		double somme = this.x;
+		for (double val : x) {
+			somme += val;
+		}
+		return somme;
 	}
 
-	@Override
-	public Object moins(Object obj) {
-		if (obj instanceof Reel) {
-            Reel r = (Reel) obj;
-            return new Reel(this.x - r.x);
-        }
-        return null;
+	public double moins(double... x) {
+		double res = this.x;
+		for (double val : x) {
+			res -= val;
+		}
+		return res;
 	}
-	public double plus (double y) {
-		 return this.x - y;
-		
-	}
-	
+
 }

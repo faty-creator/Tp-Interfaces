@@ -22,7 +22,7 @@ public class TestEx2 {
 	        System.out.println("Soustraction des réels : " + sousR.affiche());
 
 
-//	        System.out.println("Surcharge plus : " + r1.plus(10.0));
-//	        System.out.println("Surcharge moins : " + r1.moins(3.0));
+	        System.out.println("Surcharge plus : " + r1.plus(2,3,4));
+	        System.out.println("Surcharge moins : " + r1.moins(10,2));
 }
 }
